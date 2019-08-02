@@ -13,19 +13,19 @@ class Db
         $this->dbh = new \PDO('mysql:host=mysql;dbname=albert', 'root', 'root');
     }
 
-    public function execute($sql)
+    public function execute($sql,$param = null)
     {
         $sth = $this->dbh->prepare($sql);
-        $res = $sth->execute();
+        $res = $sth->execute($param);
         return $res;
     }
 
-    public function query($sql, $class)
+    public function query($sql, $class,$param = null)
     {
-        $sth = $this->dbh->prepare($sql);
-        $res = $sth->execute();
+        $sth = $this->dbh->prepare($sql) ;
+        $res = $sth->execute($param );
         if (false !== $res) {
-            return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
+            return $sth->fetchAll(\PDO::FETCH_CLASS,  $class);
         }
         return [];
     }
