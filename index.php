@@ -1,13 +1,14 @@
 <?php
 
 require __DIR__ . '/autoload.php';
-include(__DIR__ . '/App/View/News.php');
+//include(__DIR__ . '/App/View/News.php');
+//include(__DIR__ . '/App/View/Article.php');
 
-$users = \App\Models\User:: findById(1);
 $news = \App\Models\News::lastThree();
-
-//var_dump($users);
-//var_dump($news[0]);
-
+foreach ($news as $data) {
+    echo $data->title . '<br>';
+    echo $data->disc . '<br><br>';
+    echo "<a href='App/View/Article.php?id={$data->id}'>Подробнее</a><p>";
+}
 
 

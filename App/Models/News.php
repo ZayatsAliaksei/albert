@@ -16,10 +16,11 @@ class News extends Model
 
     public static function lastThree()
     {
-        $db = new Db();
+        $db =  Db::instance();
         return $db->query(
             'SELECT * FROM news ORDER BY id DESC LIMIT 3',
             self::class
         );
     }
+
 }

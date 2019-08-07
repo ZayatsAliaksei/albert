@@ -3,24 +3,24 @@
 
 namespace App;
 
-class Db
+class Db extends Singleton
 {
 
     protected $dbh;
 
-    public function __construct()
+    protected function __construct()
     {
         $this->dbh = new \PDO('mysql:host=mysql;dbname=albert', 'root', 'root');
     }
 
-    public function execute($sql,$param = null)
+    public function execute($sql, $param = [])
     {
         $sth = $this->dbh->prepare($sql);
         $res = $sth->execute($param);
         return $res;
     }
 
-    public function query($sql, $class,$param = null)
+    public function query($sql, $class, $param = [])
     {
         $sth = $this->dbh->prepare($sql) ;
         $res = $sth->execute($param );

@@ -5,11 +5,11 @@ namespace App;
 abstract class Model
 {
 
-    const TABLE = 'users';
+    const TABLE = 'user';
 
     public static function findAll()
     {
-        $db = new Db();
+        $db =  Db::instance();
         return $db->query(
             'SELECT * FROM ' . static::TABLE,
             static::class
@@ -18,7 +18,7 @@ abstract class Model
 
     public static function findById($id)
     {
-        $db = new Db();
+        $db = Db::instance();
         return $db->query(
           'SELECT * FROM ' . static::TABLE .' WHERE id ='.$id,
           static::class
