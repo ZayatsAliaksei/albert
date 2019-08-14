@@ -11,4 +11,7 @@ foreach ($news as $data) {
     echo "<a href='App/View/Article.php?id={$data->id}'>Подробнее</a><p>";
 }
 
-
+$user = new \App\Models\User();
+$user->name = 'user';
+$user->email = 'u@u.com';
+$user->create();
