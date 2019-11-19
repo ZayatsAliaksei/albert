@@ -43,17 +43,15 @@ abstract class Model
                 continue;
             }
             $columns[] = $key;
-            $values[$key] = $value;
+            $values[':' .$key] = $value;
         }
 
-        $sql = 'INSERT INTO '
-            . static::TABLE . '(' . implode(',', $columns) . ')
-             VALUES(' . implode("','", array_values($values)) . ')';
+        $sql = 'INSERT INTO ' . static::TABLE .
+            '(' . implode(',', $columns) .
+            ')VALUES(' . implode(',', array_keys($values)) . ')';
 
-        var_dump($sql);
-        die();
         $db = Db::instance();
-        $db->execute($sql);
+        $db->execute($sql,$values);
 
     }
 
