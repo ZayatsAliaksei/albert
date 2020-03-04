@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<product cost="100" amount="3">
+		<name>продукт 1</name>
+		<category>категория 1</category>
+	</product>
+	<product cost="200" amount="4">
+		<name>продукт 2</name>
+		<category>категория 2</category>
+	</product>
+	<product cost="300" amount="5">
+		<name>продукт 3</name>
+		<category>категория 3</category>
+	</product>
+</root>
