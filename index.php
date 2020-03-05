@@ -3,7 +3,6 @@
 use App\Db;
 
 require __DIR__ . '/autoload.php';
-include __DIR__ .'App/bank.php';
 //include(__DIR__ . '/App/View/News.php');
 //include(__DIR__ . '/App/View/Article.php');
 
@@ -30,7 +29,19 @@ $xml = simplexml_load_file('App/test.xml');
     echo '  Количество:'.$item['amount']. '<br>';
 
 }*/
-echo $date = $_REQUEST['date'];
+/*if ($_GET['send'] != 0){
+    echo $_GET['send'];
+}*/
+//$date = $_POST['send'];
+
+$data_format = strtotime($_GET['send']);
+$result = date('m/d/Y',$data_format);
+
+$bank = simplexml_load_file('http://www.nbrb.by/services/xmlexrates.aspx?ondate='.$result);
+
+foreach($bank->Currency as $value){
+    echo $value->Name .': '.$value->Rate.'<br>';
+};
 
 ?>
 
@@ -43,9 +54,9 @@ echo $date = $_REQUEST['date'];
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-    <form action="" method="post">
-        <p><input type="date" name="date"></p>
-        <p><input type="button" value="Oтправить"></p>
+    <form method="get" action="index.php">
+        <p><input type="date" name="send"></p>
+        <p><input type= submit value="Отправить"></p>
     </form>
-</body>
+
 </html>
